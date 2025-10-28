@@ -1,0 +1,348 @@
+@extends("Layouts.page")
+@section("title","Edit Kunjungan Baru")
+@section("kunjungan")
+
+<div class="card">
+    <div class="card-header">
+        <h3>Edit Kunjungan Baru</h3>
+    </div>
+    <div class="card-body">
+        @if(session('alert-success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>{{ session('alert-success') }}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+
+        @if(session('alert-danger'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>{{ session('alert-danger') }}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+
+        <form action="/update-kunjungan/{{ $kunjungan['id_Kunjungan'] }}" method="post">
+            @csrf
+            @method('PUT')
+
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label>Tanggal *</label>
+                    <input type="date" name="Tanggal" class="form-control" required
+                           value="{{ $kunjungan['tanggal'] ?? date('Y-m-d') }}" readonly>
+                </div>
+                <div class="form-group col-md-4">
+                    <label>No Antrian *</label>
+                    <input type="number" name="NoAntrian" class="form-control" required min="1"
+                           value="{{ $kunjungan['noAntrian'] ?? '' }}" readonly>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="d-block mb-2">Data Pasien *</label>
+                <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#pasienModal">
+                    <i class="bi bi-search"></i> Cari Pasien
+                </button>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <label>No Rekam Medis</label>
+                        <input type="text" name="Id_RekamMedis" id="noRekamMedis" class="form-control"
+                               value="{{ $kunjungan['rekamMedis']['id_RekamMedis'] ?? '' }}" readonly required>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Nama Pasien</label>
+                        <input type="text" id="namaPasien" class="form-control"
+                               value="{{ $kunjungan['rekamMedis']['nama'] ?? '' }}" readonly>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Tanggal Lahir</label>
+                        <input type="text" id="tanggalLahir" class="form-control"
+                               value="{{ isset($kunjungan['rekamMedis']['tanggalLahir']) ? date('d-m-Y', strtotime($kunjungan['rekamMedis']['tanggalLahir'])) : '' }}" readonly>
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" name="JenisKunjungan" value="Baru">
+            <div class="form-group">
+                <label class="d-block mb-2">Data Klinik *</label>
+                <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#klinikModal">
+                    <i class="bi bi-search"></i> Cari Klinik
+                </button>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <label>Id Klinik</label>
+                        <input type="text" name="Id_Klinik" id="idKlinik" class="form-control"
+                               value="{{ $kunjungan['klinik']['id_Klinik'] ?? '' }}" readonly required>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Nama Klinik</label>
+                        <input type="text" id="namaKlinik" class="form-control"
+                               value="{{ $kunjungan['klinik']['nama'] ?? '' }}" readonly>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Jenis Klinik</label>
+                        <input type="text" id="jenis" class="form-control"
+                               value="{{ $kunjungan['klinik']['jenis'] ?? '' }}" readonly>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="d-block mb-2">Data Dokter *</label>
+                <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#dokterModal">
+                    <i class="bi bi-search"></i> Cari Dokter
+                </button>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <label>ID Dokter</label>
+                        <input type="text" name="Id_Dokter" id="idDokter" class="form-control"
+                               value="{{ $kunjungan['dokter']['id_Dokter'] ?? '' }}" readonly required>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Nama Dokter</label>
+                        <input type="text" id="namaDokter" class="form-control"
+                               value="{{ $kunjungan['dokter']['nama'] ?? '' }}" readonly>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Spesialisasi</label>
+                        <input type="text" id="spesialisasi" class="form-control"
+                               value="{{ $kunjungan['dokter']['spesialisasi'] ?? '' }}" readonly>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Keluhan *</label>
+                <textarea name="Keluhan" class="form-control" rows="3" required>{{ $kunjungan['keluhan'] ?? '' }}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Diagnosis *</label>
+                <textarea name="Diagnosis" class="form-control" rows="3" required>{{ $kunjungan['diagnosis'] ?? '' }}</textarea>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-save"></i> Update
+                </button>
+                <a href="/kunjungan" class="btn btn-secondary">
+                    <i class="bi bi-x-circle"></i> Batal
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal Pasien -->
+<div class="modal fade" id="pasienModal" tabindex="-1" role="dialog" aria-labelledby="pasienModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="pasienModalLabel">Cari dan Pilih Pasien</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <input type="text" id="searchPasien" class="form-control" placeholder="Cari Nama Pasien">
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered" id="tabelPasien">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>No Rekam Medis</th>
+                                <th>Nama</th>
+                                <th>Tanggal Lahir</th>
+                                <th>Gender</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pasienTableBody">
+                            @foreach($pasiens as $pasien)
+                            <tr>
+                                <td>{{ $pasien['id_RekamMedis'] ?? 'N/A' }}</td>
+                                <td>{{ $pasien['nama'] ?? 'N/A' }}</td>
+                                <td>{{ $pasien['tanggalLahir'] ?? 'N/A' }}</td>
+                                <td>{{ $pasien['gender'] ?? 'N/A' }}</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary btn-sm pilih-pasien"
+                                        data-id="{{ $pasien['id_RekamMedis'] }}"
+                                        data-nama="{{ $pasien['nama'] }}"
+                                        data-tanggallahir="{{ $pasien['tanggalLahir'] }}">
+                                        Pilih
+                                    </button>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Dokter -->
+<div class="modal fade" id="dokterModal" tabindex="-1" role="dialog" aria-labelledby="dokterModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="dokterModalLabel">Cari dan Pilih Dokter</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <input type="text" id="searchDokter" class="form-control" placeholder="Cari berdasarkan nama atau spesialisasi...">
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered" id="tabelDokter">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>ID Dokter</th>
+                                <th>Nama</th>
+                                <th>Spesialisasi</th>
+                                <th>Hari Praktek</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dokterTableBody">
+                            @foreach($dokters as $dokter)
+                            <tr>
+                                <td>{{ $dokter['id_Dokter'] ?? 'N/A' }}</td>
+                                <td>{{ $dokter['nama'] ?? 'N/A' }}</td>
+                                <td>{{ $dokter['spesialisasi'] ?? 'N/A' }}</td>
+                                <td>{{ $dokter['hariPraktek'] ?? 'N/A' }}</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary btn-sm pilih-dokter"
+                                        data-id-dokter="{{ $dokter['id_Dokter'] }}"
+                                        data-nama-dokter="{{ $dokter['nama'] }}"
+                                        data-spesialisasi="{{ $dokter['spesialisasi'] }}">
+                                        Pilih
+                                    </button>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Klinik -->
+<div class="modal fade" id="klinikModal" tabindex="-1" role="dialog" aria-labelledby="klinikModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="klinikModalLabel">Pilih Klinik</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <input type="text" id="searchKlinik" class="form-control" placeholder="Cari berdasarkan nama atau jenis klinik...">
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered" id="tabelKlinik">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>ID Klinik</th>
+                                <th>Nama</th>
+                                <th>Jenis</th>
+                                <th>Gedung</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="klinikTableBody">
+                            @foreach($kliniks as $klinik)
+                            <tr>
+                                <td>{{ $klinik['id_Klinik'] ?? 'N/A' }}</td>
+                                <td>{{ $klinik['nama'] ?? 'N/A' }}</td>
+                                <td>{{ $klinik['jenis'] ?? 'N/A' }}</td>
+                                <td>{{ $klinik['gedung'] ?? 'N/A' }}</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary btn-sm pilih-klinik"
+                                        data-id-klinik="{{ $klinik['id_Klinik'] }}"
+                                        data-nama-klinik="{{ $klinik['nama'] }}"
+                                        data-jenis="{{ $klinik['jenis'] }}">
+                                        Pilih
+                                    </button>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Setup pencarian
+    function setupSearch(searchInputId, tableId, searchColumns) {
+        $(`#${searchInputId}`).on('keyup', function() {
+            const value = $(this).val().toLowerCase();
+            $(`#${tableId} tbody tr`).filter(function() {
+                let match = false;
+                searchColumns.forEach(col => {
+                    if ($(this).find('td').eq(col).text().toLowerCase().indexOf(value) > -1) {
+                        match = true;
+                    }
+                });
+                $(this).toggle(match);
+            });
+        });
+    }
+
+    // Inisialisasi pencarian
+    setupSearch('searchPasien', 'tabelPasien', [0, 1, 2, 3]);
+    setupSearch('searchDokter', 'tabelDokter', [0, 1, 2, 3]);
+    setupSearch('searchKlinik', 'tabelKlinik', [0, 1, 2, 3]);
+
+    // Event listeners untuk pemilihan data
+    $(document).on('click', '.pilih-pasien', function() {
+        $('#noRekamMedis').val($(this).data('id'));
+        $('#namaPasien').val($(this).data('nama'));
+        $('#tanggalLahir').val($(this).data('tanggallahir'));
+        $('#pasienModal').modal('hide');
+    });
+
+    $(document).on('click', '.pilih-dokter', function() {
+        $('#idDokter').val($(this).data('id-dokter'));
+        $('#namaDokter').val($(this).data('nama-dokter'));
+        $('#spesialisasi').val($(this).data('spesialisasi'));
+        $('#dokterModal').modal('hide');
+    });
+
+    $(document).on('click', '.pilih-klinik', function() {
+        $('#idKlinik').val($(this).data('id-klinik'));
+        $('#namaKlinik').val($(this).data('nama-klinik'));
+        $('#jenis').val($(this).data('jenis'));
+        $('#klinikModal').modal('hide');
+    });
+
+    // Inisialisasi DataTables
+    $('#tabelPasien, #tabelDokter, #tabelKlinik').DataTable({
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/Indonesian.json"
+        },
+        "searching": false,
+        "lengthChange": false,
+        "pageLength": 5
+    });
+});
+</script>
+@endsection

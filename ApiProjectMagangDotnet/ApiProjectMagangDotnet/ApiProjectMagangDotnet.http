@@ -1,0 +1,6 @@
+@ApiProjectMagangDotnet_HostAddress = http://localhost:5022
+
+GET {{ApiProjectMagangDotnet_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

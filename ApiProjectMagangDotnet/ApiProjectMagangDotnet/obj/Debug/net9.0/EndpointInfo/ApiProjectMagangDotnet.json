@@ -1,0 +1,1482 @@
+{
+  "openapi": "3.0.4",
+  "info": {
+    "title": "ApiProjectMagangDotnet",
+    "version": "1.0"
+  },
+  "paths": {
+    "/cekpassword/{password}": {
+      "get": {
+        "tags": [
+          "ApiProjectMagangDotnet"
+        ],
+        "parameters": [
+          {
+            "name": "password",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/user": {
+      "get": {
+        "tags": [
+          "ApiProjectMagangDotnet"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "ApiProjectMagangDotnet"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AspUserAddDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "ApiProjectMagangDotnet"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AspUser"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AspUser"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/{username}": {
+      "get": {
+        "tags": [
+          "ApiProjectMagangDotnet"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "ApiProjectMagangDotnet"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/user/login": {
+      "post": {
+        "tags": [
+          "ApiProjectMagangDotnet"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/user/forgot-password": {
+      "post": {
+        "tags": [
+          "ApiProjectMagangDotnet"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ForgotPasswordDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/user/find-username": {
+      "post": {
+        "tags": [
+          "ApiProjectMagangDotnet"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FindUsernameDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/user/reset-password": {
+      "post": {
+        "tags": [
+          "ApiProjectMagangDotnet"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetPasswordDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/user/validate-reset-token/{token}": {
+      "get": {
+        "tags": [
+          "ApiProjectMagangDotnet"
+        ],
+        "parameters": [
+          {
+            "name": "token",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Dokter": {
+      "get": {
+        "tags": [
+          "Dokter"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Dokter"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DokterAddDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Dokter"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Dokter"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Dokter"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Dokter/{id}": {
+      "get": {
+        "tags": [
+          "Dokter"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Dokter"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Klinik": {
+      "get": {
+        "tags": [
+          "Klinik"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Klinik"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/KlinikAddDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Klinik"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Klinik"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Klinik"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Klinik/{id}": {
+      "get": {
+        "tags": [
+          "Klinik"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Klinik"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Kunjungan/All": {
+      "get": {
+        "tags": [
+          "Kunjungan"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Kunjungan/Baru": {
+      "get": {
+        "tags": [
+          "Kunjungan"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Kunjungan/{id}": {
+      "get": {
+        "tags": [
+          "Kunjungan"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Kunjungan"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Kunjungan": {
+      "post": {
+        "tags": [
+          "Kunjungan"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/KunjunganAddDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Kunjungan"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Kunjungan"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Kunjungan/PasienLama": {
+      "post": {
+        "tags": [
+          "Kunjungan"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/KunjunganAddDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Kunjungan"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/KunjunganUpdateDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Kunjungan/Lama": {
+      "get": {
+        "tags": [
+          "Kunjungan"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Kunjungan/PasienLama/{id}": {
+      "delete": {
+        "tags": [
+          "Kunjungan"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/kunjungan/check-duplicate": {
+      "get": {
+        "tags": [
+          "Kunjungan"
+        ],
+        "parameters": [
+          {
+            "name": "rekam_medis",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dokter",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "klinik",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Pasien": {
+      "get": {
+        "tags": [
+          "Pasien"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Pasien"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RekamMedisAddDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Pasien"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RekamMedis"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RekamMedis"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Pasien/{id}": {
+      "get": {
+        "tags": [
+          "Pasien"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Pasien"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/userpasien": {
+      "get": {
+        "tags": [
+          "UserPasien"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "UserPasien"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserPasienAddDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/userpasien/{username}": {
+      "get": {
+        "tags": [
+          "UserPasien"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "UserPasien"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/userpasien/by-rekam-medis/{idRekamMedis}": {
+      "get": {
+        "tags": [
+          "UserPasien"
+        ],
+        "parameters": [
+          {
+            "name": "idRekamMedis",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/userpasien/login": {
+      "post": {
+        "tags": [
+          "UserPasien"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/userpasien/find-username": {
+      "post": {
+        "tags": [
+          "UserPasien"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FindUsernameDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AspUser": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          },
+          "namaUser": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "nomorHP": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AspUserAddDTO": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          },
+          "namaUser": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "nomorHP": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Dokter": {
+        "type": "object",
+        "properties": {
+          "id_Dokter": {
+            "type": "string",
+            "nullable": true
+          },
+          "nama": {
+            "type": "string",
+            "nullable": true
+          },
+          "spesialisasi": {
+            "type": "string",
+            "nullable": true
+          },
+          "noHP": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "hariPraktek": {
+            "type": "string",
+            "nullable": true
+          },
+          "jamMulai": {
+            "type": "string",
+            "format": "time"
+          },
+          "jamSelesai": {
+            "type": "string",
+            "format": "time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DokterAddDTO": {
+        "type": "object",
+        "properties": {
+          "id_Dokter": {
+            "type": "string",
+            "nullable": true
+          },
+          "nama": {
+            "type": "string",
+            "nullable": true
+          },
+          "spesialisasi": {
+            "type": "string",
+            "nullable": true
+          },
+          "noHP": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "hariPraktek": {
+            "type": "string",
+            "nullable": true
+          },
+          "jamMulai": {
+            "type": "string",
+            "format": "time"
+          },
+          "jamSelesai": {
+            "type": "string",
+            "format": "time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "FindUsernameDTO": {
+        "required": [
+          "email"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "minLength": 1,
+            "type": "string",
+            "format": "email"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ForgotPasswordDTO": {
+        "required": [
+          "emailOrUsername"
+        ],
+        "type": "object",
+        "properties": {
+          "emailOrUsername": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Klinik": {
+        "type": "object",
+        "properties": {
+          "id_Klinik": {
+            "type": "string",
+            "nullable": true
+          },
+          "nama": {
+            "type": "string",
+            "nullable": true
+          },
+          "jenis": {
+            "type": "string",
+            "nullable": true
+          },
+          "gedung": {
+            "type": "string",
+            "nullable": true
+          },
+          "lantai": {
+            "type": "string",
+            "nullable": true
+          },
+          "kapasitas": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "keterangan": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "KlinikAddDTO": {
+        "type": "object",
+        "properties": {
+          "id_Klinik": {
+            "type": "string",
+            "nullable": true
+          },
+          "nama": {
+            "type": "string",
+            "nullable": true
+          },
+          "jenis": {
+            "type": "string",
+            "nullable": true
+          },
+          "gedung": {
+            "type": "string",
+            "nullable": true
+          },
+          "lantai": {
+            "type": "string",
+            "nullable": true
+          },
+          "kapasitas": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "keterangan": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Kunjungan": {
+        "type": "object",
+        "properties": {
+          "id_Kunjungan": {
+            "type": "string",
+            "nullable": true
+          },
+          "noAntrian": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "tanggal": {
+            "type": "string",
+            "format": "date"
+          },
+          "jenisKunjungan": {
+            "type": "string",
+            "nullable": true
+          },
+          "id_RekamMedis": {
+            "type": "string",
+            "nullable": true
+          },
+          "id_Dokter": {
+            "type": "string",
+            "nullable": true
+          },
+          "id_Klinik": {
+            "type": "string",
+            "nullable": true
+          },
+          "keluhan": {
+            "type": "string",
+            "nullable": true
+          },
+          "diagnosis": {
+            "type": "string",
+            "nullable": true
+          },
+          "rekamMedis": {
+            "$ref": "#/components/schemas/RekamMedis"
+          },
+          "klinik": {
+            "$ref": "#/components/schemas/Klinik"
+          },
+          "dokter": {
+            "$ref": "#/components/schemas/Dokter"
+          }
+        },
+        "additionalProperties": false
+      },
+      "KunjunganAddDTO": {
+        "type": "object",
+        "properties": {
+          "id_Kunjungan": {
+            "type": "string",
+            "nullable": true
+          },
+          "id_RekamMedis": {
+            "type": "string",
+            "nullable": true
+          },
+          "id_Dokter": {
+            "type": "string",
+            "nullable": true
+          },
+          "id_Klinik": {
+            "type": "string",
+            "nullable": true
+          },
+          "jenisKunjungan": {
+            "type": "string",
+            "nullable": true
+          },
+          "keluhan": {
+            "type": "string",
+            "nullable": true
+          },
+          "diagnosis": {
+            "type": "string",
+            "nullable": true
+          },
+          "noAntrian": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "tanggal": {
+            "type": "string",
+            "format": "date"
+          }
+        },
+        "additionalProperties": false
+      },
+      "KunjunganUpdateDTO": {
+        "type": "object",
+        "properties": {
+          "id_RekamMedis": {
+            "type": "string",
+            "nullable": true
+          },
+          "id_Dokter": {
+            "type": "string",
+            "nullable": true
+          },
+          "id_Klinik": {
+            "type": "string",
+            "nullable": true
+          },
+          "keluhan": {
+            "type": "string",
+            "nullable": true
+          },
+          "diagnosis": {
+            "type": "string",
+            "nullable": true
+          },
+          "noAntrian": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "tanggal": {
+            "type": "string",
+            "format": "date"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LoginDTO": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RekamMedis": {
+        "type": "object",
+        "properties": {
+          "id_RekamMedis": {
+            "type": "string",
+            "nullable": true
+          },
+          "noKTP": {
+            "type": "string",
+            "nullable": true
+          },
+          "nama": {
+            "type": "string",
+            "nullable": true
+          },
+          "tempatLahir": {
+            "type": "string",
+            "nullable": true
+          },
+          "tanggalLahir": {
+            "type": "string",
+            "format": "date"
+          },
+          "gender": {
+            "type": "string",
+            "nullable": true
+          },
+          "umur": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "bulan": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "agama": {
+            "type": "string",
+            "nullable": true
+          },
+          "statusKawin": {
+            "type": "string",
+            "nullable": true
+          },
+          "pendidikan": {
+            "type": "string",
+            "nullable": true
+          },
+          "pekerjaan": {
+            "type": "string",
+            "nullable": true
+          },
+          "bahasa": {
+            "type": "string",
+            "nullable": true
+          },
+          "butuhPenerjemah": {
+            "type": "string",
+            "nullable": true
+          },
+          "noTelp": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "alamat": {
+            "type": "string",
+            "nullable": true
+          },
+          "kecamatan": {
+            "type": "string",
+            "nullable": true
+          },
+          "kabupaten": {
+            "type": "string",
+            "nullable": true
+          },
+          "provinsi": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RekamMedisAddDTO": {
+        "type": "object",
+        "properties": {
+          "id_RekamMedis": {
+            "type": "string",
+            "nullable": true
+          },
+          "noKTP": {
+            "type": "string",
+            "nullable": true
+          },
+          "nama": {
+            "type": "string",
+            "nullable": true
+          },
+          "tempatLahir": {
+            "type": "string",
+            "nullable": true
+          },
+          "tanggalLahir": {
+            "type": "string",
+            "format": "date"
+          },
+          "gender": {
+            "type": "string",
+            "nullable": true
+          },
+          "umur": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "bulan": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "agama": {
+            "type": "string",
+            "nullable": true
+          },
+          "statusKawin": {
+            "type": "string",
+            "nullable": true
+          },
+          "pendidikan": {
+            "type": "string",
+            "nullable": true
+          },
+          "pekerjaan": {
+            "type": "string",
+            "nullable": true
+          },
+          "bahasa": {
+            "type": "string",
+            "nullable": true
+          },
+          "butuhPenerjemah": {
+            "type": "string",
+            "nullable": true
+          },
+          "noTelp": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "alamat": {
+            "type": "string",
+            "nullable": true
+          },
+          "kecamatan": {
+            "type": "string",
+            "nullable": true
+          },
+          "kabupaten": {
+            "type": "string",
+            "nullable": true
+          },
+          "provinsi": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResetPasswordDTO": {
+        "required": [
+          "confirmPassword",
+          "newPassword",
+          "token"
+        ],
+        "type": "object",
+        "properties": {
+          "token": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "newPassword": {
+            "minLength": 6,
+            "type": "string"
+          },
+          "confirmPassword": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserPasienAddDTO": {
+        "type": "object",
+        "properties": {
+          "id_RekamMedis": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

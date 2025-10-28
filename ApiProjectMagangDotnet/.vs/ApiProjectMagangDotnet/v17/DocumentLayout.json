@@ -1,0 +1,168 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\materi kuliah\\Folder Magang\\ApiProjectMagangDotnet\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{36CA71E2-AE5D-4F9C-AABD-D9923AEB296D}|ApiProjectMagangDotnet\\ApiProjectMagangDotnet.csproj|d:\\materi kuliah\\folder magang\\apiprojectmagangdotnet\\apiprojectmagangdotnet\\data\\iidklinikgeneratorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{36CA71E2-AE5D-4F9C-AABD-D9923AEB296D}|ApiProjectMagangDotnet\\ApiProjectMagangDotnet.csproj|solutionrelative:apiprojectmagangdotnet\\data\\iidklinikgeneratorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{36CA71E2-AE5D-4F9C-AABD-D9923AEB296D}|ApiProjectMagangDotnet\\ApiProjectMagangDotnet.csproj|d:\\materi kuliah\\folder magang\\apiprojectmagangdotnet\\apiprojectmagangdotnet\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{36CA71E2-AE5D-4F9C-AABD-D9923AEB296D}|ApiProjectMagangDotnet\\ApiProjectMagangDotnet.csproj|solutionrelative:apiprojectmagangdotnet\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{36CA71E2-AE5D-4F9C-AABD-D9923AEB296D}|ApiProjectMagangDotnet\\ApiProjectMagangDotnet.csproj|d:\\materi kuliah\\folder magang\\apiprojectmagangdotnet\\apiprojectmagangdotnet\\apiprojectmagangdotnet.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{36CA71E2-AE5D-4F9C-AABD-D9923AEB296D}|ApiProjectMagangDotnet\\ApiProjectMagangDotnet.csproj|solutionrelative:apiprojectmagangdotnet\\apiprojectmagangdotnet.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{36CA71E2-AE5D-4F9C-AABD-D9923AEB296D}|ApiProjectMagangDotnet\\ApiProjectMagangDotnet.csproj|d:\\materi kuliah\\folder magang\\apiprojectmagangdotnet\\apiprojectmagangdotnet\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{36CA71E2-AE5D-4F9C-AABD-D9923AEB296D}|ApiProjectMagangDotnet\\ApiProjectMagangDotnet.csproj|solutionrelative:apiprojectmagangdotnet\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{36CA71E2-AE5D-4F9C-AABD-D9923AEB296D}|ApiProjectMagangDotnet\\ApiProjectMagangDotnet.csproj|d:\\materi kuliah\\folder magang\\apiprojectmagangdotnet\\apiprojectmagangdotnet\\data\\iiddoktergeneratorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{36CA71E2-AE5D-4F9C-AABD-D9923AEB296D}|ApiProjectMagangDotnet\\ApiProjectMagangDotnet.csproj|solutionrelative:apiprojectmagangdotnet\\data\\iiddoktergeneratorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{36CA71E2-AE5D-4F9C-AABD-D9923AEB296D}|ApiProjectMagangDotnet\\ApiProjectMagangDotnet.csproj|d:\\materi kuliah\\folder magang\\apiprojectmagangdotnet\\apiprojectmagangdotnet\\dataef\\iddoktergeneratorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{36CA71E2-AE5D-4F9C-AABD-D9923AEB296D}|ApiProjectMagangDotnet\\ApiProjectMagangDotnet.csproj|solutionrelative:apiprojectmagangdotnet\\dataef\\iddoktergeneratorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{36CA71E2-AE5D-4F9C-AABD-D9923AEB296D}|ApiProjectMagangDotnet\\ApiProjectMagangDotnet.csproj|d:\\materi kuliah\\folder magang\\apiprojectmagangdotnet\\apiprojectmagangdotnet\\data\\idpasiengeneratorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{36CA71E2-AE5D-4F9C-AABD-D9923AEB296D}|ApiProjectMagangDotnet\\ApiProjectMagangDotnet.csproj|solutionrelative:apiprojectmagangdotnet\\data\\idpasiengeneratorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{36CA71E2-AE5D-4F9C-AABD-D9923AEB296D}|ApiProjectMagangDotnet\\ApiProjectMagangDotnet.csproj|d:\\materi kuliah\\folder magang\\apiprojectmagangdotnet\\apiprojectmagangdotnet\\data\\idgeneratorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{36CA71E2-AE5D-4F9C-AABD-D9923AEB296D}|ApiProjectMagangDotnet\\ApiProjectMagangDotnet.csproj|solutionrelative:apiprojectmagangdotnet\\data\\idgeneratorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\materi kuliah\\Folder Magang\\ApiProjectMagangDotnet\\ApiProjectMagangDotnet\\Program.cs",
+              "RelativeDocumentMoniker": "ApiProjectMagangDotnet\\Program.cs",
+              "ToolTip": "D:\\materi kuliah\\Folder Magang\\ApiProjectMagangDotnet\\ApiProjectMagangDotnet\\Program.cs",
+              "RelativeToolTip": "ApiProjectMagangDotnet\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-13T06:52:54.527Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{56df62a4-05a3-4e5b-aa1a-99371ccfb997}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ApiProjectMagangDotnet.http",
+              "DocumentMoniker": "D:\\materi kuliah\\Folder Magang\\ApiProjectMagangDotnet\\ApiProjectMagangDotnet\\ApiProjectMagangDotnet.http",
+              "RelativeDocumentMoniker": "ApiProjectMagangDotnet\\ApiProjectMagangDotnet.http",
+              "ToolTip": "D:\\materi kuliah\\Folder Magang\\ApiProjectMagangDotnet\\ApiProjectMagangDotnet\\ApiProjectMagangDotnet.http",
+              "RelativeToolTip": "ApiProjectMagangDotnet\\ApiProjectMagangDotnet.http",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
+              "WhenOpened": "2025-10-13T06:52:41.302Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "IIdKlinikGeneratorService.cs",
+              "DocumentMoniker": "D:\\materi kuliah\\Folder Magang\\ApiProjectMagangDotnet\\ApiProjectMagangDotnet\\Data\\IIdKlinikGeneratorService.cs",
+              "RelativeDocumentMoniker": "ApiProjectMagangDotnet\\Data\\IIdKlinikGeneratorService.cs",
+              "ToolTip": "D:\\materi kuliah\\Folder Magang\\ApiProjectMagangDotnet\\ApiProjectMagangDotnet\\Data\\IIdKlinikGeneratorService.cs",
+              "RelativeToolTip": "ApiProjectMagangDotnet\\Data\\IIdKlinikGeneratorService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-13T03:08:15.483Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\materi kuliah\\Folder Magang\\ApiProjectMagangDotnet\\ApiProjectMagangDotnet\\appsettings.json",
+              "RelativeDocumentMoniker": "ApiProjectMagangDotnet\\appsettings.json",
+              "ToolTip": "D:\\materi kuliah\\Folder Magang\\ApiProjectMagangDotnet\\ApiProjectMagangDotnet\\appsettings.json",
+              "RelativeToolTip": "ApiProjectMagangDotnet\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-10-13T06:42:29.322Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IdDokterGeneratorService.cs",
+              "DocumentMoniker": "D:\\materi kuliah\\Folder Magang\\ApiProjectMagangDotnet\\ApiProjectMagangDotnet\\DataEF\\IdDokterGeneratorService.cs",
+              "RelativeDocumentMoniker": "ApiProjectMagangDotnet\\DataEF\\IdDokterGeneratorService.cs",
+              "ToolTip": "D:\\materi kuliah\\Folder Magang\\ApiProjectMagangDotnet\\ApiProjectMagangDotnet\\DataEF\\IdDokterGeneratorService.cs",
+              "RelativeToolTip": "ApiProjectMagangDotnet\\DataEF\\IdDokterGeneratorService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-13T03:09:06.473Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "IdPasienGeneratorService.cs",
+              "DocumentMoniker": "D:\\materi kuliah\\Folder Magang\\ApiProjectMagangDotnet\\ApiProjectMagangDotnet\\Data\\IdPasienGeneratorService.cs",
+              "RelativeDocumentMoniker": "ApiProjectMagangDotnet\\Data\\IdPasienGeneratorService.cs",
+              "ToolTip": "D:\\materi kuliah\\Folder Magang\\ApiProjectMagangDotnet\\ApiProjectMagangDotnet\\Data\\IdPasienGeneratorService.cs",
+              "RelativeToolTip": "ApiProjectMagangDotnet\\Data\\IdPasienGeneratorService.cs",
+              "ViewState": "AgIAADAAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-13T03:05:12.864Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IIdDokterGeneratorService.cs",
+              "DocumentMoniker": "D:\\materi kuliah\\Folder Magang\\ApiProjectMagangDotnet\\ApiProjectMagangDotnet\\Data\\IIdDokterGeneratorService.cs",
+              "RelativeDocumentMoniker": "ApiProjectMagangDotnet\\Data\\IIdDokterGeneratorService.cs",
+              "ToolTip": "D:\\materi kuliah\\Folder Magang\\ApiProjectMagangDotnet\\ApiProjectMagangDotnet\\Data\\IIdDokterGeneratorService.cs",
+              "RelativeToolTip": "ApiProjectMagangDotnet\\Data\\IIdDokterGeneratorService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-13T03:08:33.253Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "IdGeneratorService.cs",
+              "DocumentMoniker": "D:\\materi kuliah\\Folder Magang\\ApiProjectMagangDotnet\\ApiProjectMagangDotnet\\Data\\IdGeneratorService.cs",
+              "RelativeDocumentMoniker": "ApiProjectMagangDotnet\\Data\\IdGeneratorService.cs",
+              "ToolTip": "D:\\materi kuliah\\Folder Magang\\ApiProjectMagangDotnet\\ApiProjectMagangDotnet\\Data\\IdGeneratorService.cs",
+              "RelativeToolTip": "ApiProjectMagangDotnet\\Data\\IdGeneratorService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-13T03:08:19.375Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

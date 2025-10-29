@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Exports\KlinikExport;
 use GuzzleHttp\Client;
 use App\Services\ApiService;
-use Maatwebsite\Excel\Facades\Excel;
 
 class KlinikController extends Controller
 {
@@ -98,12 +96,6 @@ class KlinikController extends Controller
             ]);
         }
     }
-
-    public function exportklinik()
-    {
-        return Excel::download(new Klinik, 'klinik-' . date('Y-m-d') . '.xlsx');
-    }
-
 
     public function tambahklinik(){
         return view("tambahklinik",["key"=>"klinik"]);

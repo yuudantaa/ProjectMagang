@@ -41,11 +41,6 @@ Route::post('/save-dokter', "DokterController@simpandokter");
 Route::post('/save-kunjungan', "KunjunganController@simpankunjungan");
 Route::post('/save-kunjungan-lama', "KunjunganController@simpankunjunganlama");
 
-Route::get('/exportkunjungan',"KunjunganController@exportkunjungan");
-Route::get('/exportkunjunganlama',"KunjunganController@exportkunjunganlama");
-Route::get('/exportpasien',"PasienController@exportpasien");
-Route::get('/exportklinik',"KlinikController@exportklinik");
-Route::get('/exportdokter',"DokterController@exportdokter");
 Route::get('/export-laporan', "LaporanController@exportlaporan");
 Route::get('/export-laporan-pdf', "LaporanController@exportlaporanpdf");
 

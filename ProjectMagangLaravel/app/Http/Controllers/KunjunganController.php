@@ -3,20 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Exports\KunjunganExport;
-use App\Exports\KunjunganLamaExport;
 use GuzzleHttp\Client;
 use App\Services\ApiService;
-use Maatwebsite\Excel\Facades\Excel;
 
 class KunjunganController extends Controller
 {
-    public function kunjungan()
+    public function kunjungan(Request $request)
     {
         $client = new Client();
 
         try {
-            $response = $client->get('http://localhost:5022/Kunjungan/Baru', [
+            // Gunakan endpoint untuk kunjungan ALL
+            $response = $client->get('http://localhost:5022/Kunjungan/baru', [
                 'timeout' => 30,
                 'headers' => [
                     'Accept' => 'application/json',
@@ -27,19 +25,99 @@ class KunjunganController extends Controller
 
             if (!is_array($kunjungan)) {
                 $kunjungan = [];
-                session()->flash('alert-warning', 'Format data kunjungan baru tidak valid');
+                session()->flash('alert-warning', 'Format data kunjungan tidak valid');
             }
+
+            // Filter data berdasarkan pencarian
+            $searchBulan = $request->get('bulan');
+            $searchDokter = $request->get('dokter');
+            $searchKlinik = $request->get('klinik');
+
+            if ($searchBulan || $searchDokter || $searchKlinik) {
+                $kunjungan = array_filter($kunjungan, function($item) use ($searchBulan, $searchDokter, $searchKlinik) {
+                    $match = true;
+
+                    // Filter berdasarkan bulan (format: YYYY-MM)
+                    if ($searchBulan) {
+                        $tanggalKunjungan = $item['tanggal'] ?? $item['Tanggal'] ?? '';
+                        $bulanKunjungan = date('Y-m', strtotime($tanggalKunjungan));
+                        $match = $match && ($bulanKunjungan === $searchBulan);
+                    }
+
+                    // Filter berdasarkan nama dokter
+                    if ($searchDokter && $match) {
+                        $namaDokter = $item['dokter']['nama'] ?? '';
+                        $match = $match && (stripos($namaDokter, $searchDokter) !== false);
+                    }
+
+                    // Filter berdasarkan nama klinik
+                    if ($searchKlinik && $match) {
+                        $namaKlinik = $item['klinik']['nama'] ?? '';
+                        $match = $match && (stripos($namaKlinik, $searchKlinik) !== false);
+                    }
+
+                    return $match;
+                });
+            }
+
+            // Get unique values for dropdown suggestions
+            $bulanList = [];
+            $dokterList = [];
+            $klinikList = [];
+
+            foreach ($kunjungan as $item) {
+                // Extract bulan
+                $tanggal = $item['tanggal'] ?? $item['Tanggal'] ?? '';
+                if ($tanggal) {
+                    $bulan = date('Y-m', strtotime($tanggal));
+                    $bulanLabel = date('F Y', strtotime($tanggal));
+                    if (!in_array(['value' => $bulan, 'label' => $bulanLabel], $bulanList)) {
+                        $bulanList[] = ['value' => $bulan, 'label' => $bulanLabel];
+                    }
+                }
+
+                // Extract dokter
+                $dokterNama = $item['dokter']['nama'] ?? '';
+                if ($dokterNama && !in_array($dokterNama, $dokterList)) {
+                    $dokterList[] = $dokterNama;
+                }
+
+                // Extract klinik
+                $klinikNama = $item['klinik']['nama'] ?? '';
+                if ($klinikNama && !in_array($klinikNama, $klinikList)) {
+                    $klinikList[] = $klinikNama;
+                }
+            }
+
+            // Sort lists
+            usort($bulanList, function($a, $b) {
+                return strtotime($b['value']) - strtotime($a['value']);
+            });
+            sort($dokterList);
+            sort($klinikList);
 
             return view("kunjungan", [
                 "key" => "kunjungan",
-                "ps" => $kunjungan
+                "ps" => array_values($kunjungan),
+                "bulanList" => $bulanList,
+                "dokterList" => $dokterList,
+                "klinikList" => $klinikList,
+                "searchBulan" => $searchBulan,
+                "searchDokter" => $searchDokter,
+                "searchKlinik" => $searchKlinik
             ]);
 
         } catch (\Exception $e) {
-            session()->flash('alert-danger', 'Gagal mengambil data kunjungan baru: ' . $e->getMessage());
+            session()->flash('alert-danger', 'Gagal mengambil data kunjungan: ' . $e->getMessage());
             return view("kunjungan", [
                 "key" => "kunjungan",
-                "ps" => []
+                "ps" => [],
+                "bulanList" => [],
+                "dokterList" => [],
+                "klinikList" => [],
+                "searchBulan" => '',
+                "searchDokter" => '',
+                "searchKlinik" => ''
             ]);
         }
     }
@@ -49,38 +127,98 @@ class KunjunganController extends Controller
         $client = new Client();
 
         try {
-            $response = $client->get('http://localhost:5022/Kunjungan/Lama', [
+            // Gunakan endpoint untuk kunjungan ALL
+            $response = $client->get('http://localhost:5022/Kunjungan/lama', [
                 'timeout' => 30,
                 'headers' => [
                     'Accept' => 'application/json',
                 ]
             ]);
 
-            $kunjunganlama = json_decode($response->getBody(), true);
+            $kunjungan = json_decode($response->getBody(), true);
 
-            if (!is_array($kunjunganlama)) {
-                $kunjunganlama = [];
-                session()->flash('alert-warning', 'Format data kunjungan lama tidak valid');
+            if (!is_array($kunjungan)) {
+                $kunjungan = [];
+                session()->flash('alert-warning', 'Format data kunjungan tidak valid');
             }
 
-            $search = $request->get('search');
-            if ($search && is_array($kunjunganlama)) {
-                $kunjunganlama = array_filter($kunjunganlama, function($item) use ($search) {
-                    $search = strtolower($search);
-                    return (
-                        (isset($item['id_Kunjungan']) && stripos($item['id_Kunjungan'], $search) !== false) ||
-                        (isset($item['rekamMedis']['nama']) && stripos($item['rekamMedis']['nama'], $search) !== false) ||
-                        (isset($item['rekamMedis']['id_RekamMedis']) && stripos($item['rekamMedis']['id_RekamMedis'], $search) !== false) ||
-                        (isset($item['dokter']['nama']) && stripos($item['dokter']['nama'], $search) !== false) ||
-                        (isset($item['klinik']['nama']) && stripos($item['klinik']['nama'], $search) !== false)
-                    );
+            // Filter data berdasarkan pencarian
+            $searchBulan = $request->get('bulan');
+            $searchDokter = $request->get('dokter');
+            $searchKlinik = $request->get('klinik');
+
+            if ($searchBulan || $searchDokter || $searchKlinik) {
+                $kunjungan = array_filter($kunjungan, function($item) use ($searchBulan, $searchDokter, $searchKlinik) {
+                    $match = true;
+
+                    // Filter berdasarkan bulan (format: YYYY-MM)
+                    if ($searchBulan) {
+                        $tanggalKunjungan = $item['tanggal'] ?? $item['Tanggal'] ?? '';
+                        $bulanKunjungan = date('Y-m', strtotime($tanggalKunjungan));
+                        $match = $match && ($bulanKunjungan === $searchBulan);
+                    }
+
+                    // Filter berdasarkan nama dokter
+                    if ($searchDokter && $match) {
+                        $namaDokter = $item['dokter']['nama'] ?? '';
+                        $match = $match && (stripos($namaDokter, $searchDokter) !== false);
+                    }
+
+                    // Filter berdasarkan nama klinik
+                    if ($searchKlinik && $match) {
+                        $namaKlinik = $item['klinik']['nama'] ?? '';
+                        $match = $match && (stripos($namaKlinik, $searchKlinik) !== false);
+                    }
+
+                    return $match;
                 });
             }
 
+            // Get unique values for dropdown suggestions
+            $bulanList = [];
+            $dokterList = [];
+            $klinikList = [];
+
+            foreach ($kunjungan as $item) {
+                // Extract bulan
+                $tanggal = $item['tanggal'] ?? $item['Tanggal'] ?? '';
+                if ($tanggal) {
+                    $bulan = date('Y-m', strtotime($tanggal));
+                    $bulanLabel = date('F Y', strtotime($tanggal));
+                    if (!in_array(['value' => $bulan, 'label' => $bulanLabel], $bulanList)) {
+                        $bulanList[] = ['value' => $bulan, 'label' => $bulanLabel];
+                    }
+                }
+
+                // Extract dokter
+                $dokterNama = $item['dokter']['nama'] ?? '';
+                if ($dokterNama && !in_array($dokterNama, $dokterList)) {
+                    $dokterList[] = $dokterNama;
+                }
+
+                // Extract klinik
+                $klinikNama = $item['klinik']['nama'] ?? '';
+                if ($klinikNama && !in_array($klinikNama, $klinikList)) {
+                    $klinikList[] = $klinikNama;
+                }
+            }
+
+            // Sort lists
+            usort($bulanList, function($a, $b) {
+                return strtotime($b['value']) - strtotime($a['value']);
+            });
+            sort($dokterList);
+            sort($klinikList);
+
             return view("kunjunganlama", [
                 "key" => "kunjunganlama",
-                "ps" => $kunjunganlama,
-                "search" => $search
+                "ps" => array_values($kunjungan),
+                "bulanList" => $bulanList,
+                "dokterList" => $dokterList,
+                "klinikList" => $klinikList,
+                "searchBulan" => $searchBulan,
+                "searchDokter" => $searchDokter,
+                "searchKlinik" => $searchKlinik
             ]);
 
         } catch (\Exception $e) {
@@ -88,7 +226,12 @@ class KunjunganController extends Controller
             return view("kunjunganlama", [
                 "key" => "kunjunganlama",
                 "ps" => [],
-                "search" => null
+                "bulanList" => [],
+                "dokterList" => [],
+                "klinikList" => [],
+                "searchBulan" => '',
+                "searchDokter" => '',
+                "searchKlinik" => ''
             ]);
         }
     }
@@ -557,16 +700,6 @@ class KunjunganController extends Controller
         }
 
         return redirect('/kunjungan-lama');
-    }
-
-    public function exportkunjungan()
-    {
-        return Excel::download(new KunjunganExport, 'kunjunganBaru-' . date('Y-m-d') . '.xlsx');
-    }
-
-    public function exportkunjunganlama()
-    {
-        return Excel::download(new KunjunganLamaExport, 'kunjunganLama-' . date('Y-m-d') . '.xlsx');
     }
 
     public function tampilkunjungan($id)

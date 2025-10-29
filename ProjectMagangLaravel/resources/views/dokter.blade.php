@@ -7,12 +7,7 @@
         <a href="/dokter/tambahdokter" class="btn btn-primary">
             <i class="bi bi-plus-square"></i> Tambah Dokter
         </a>
-
-        <a href="/exportdokter" class="btn btn-success">
-            <i class="bi bi-file-earmark-excel"></i> Export Excel
-        </a>
-
-    </div>
+     </div>
     <div class="card-body">
     @if(session('alert-success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">

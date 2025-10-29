@@ -73,7 +73,6 @@
     </button>
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
         <a class="dropdown-item" href="#"><i class="bi bi-person-circle"></i> {{ session('nama') }}</a>
-        <a class="dropdown-item" href="/edit-user/{{ session('username') }}"><i class="bi bi-pencil-square"></i> Edit User</a>
         <a class="dropdown-item" href="/logout"><i class="bi bi-box-arrow-left"></i> Keluar</a>
     </div>
 </div>

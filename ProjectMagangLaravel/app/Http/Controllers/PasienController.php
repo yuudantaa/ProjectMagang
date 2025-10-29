@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use App\Services\ApiService;
-use App\Exports\PasienExport;
-use Maatwebsite\Excel\Facades\Excel;
 
 class PasienController extends Controller
 {
@@ -192,13 +190,8 @@ class PasienController extends Controller
             }
 
         } catch (\Exception $e) {
-            return back()->with('alert-danger', 'Gagal menyimpan data pasien: ' . $e->getMessage())->withInput();
+            return back()->with('alert-danger', 'Pasien sudah terdaftar')->withInput();
         }
-    }
-
-    public function exportpasien()
-    {
-        return Excel::download(new PasienExport, 'pasien-' . date('Y-m-d') . '.xlsx');
     }
 
     public function editpasien($id)
@@ -258,8 +251,6 @@ class PasienController extends Controller
 
         return redirect('/pasien');
     }
-
-
 
     public function deletepasien($id)
     {

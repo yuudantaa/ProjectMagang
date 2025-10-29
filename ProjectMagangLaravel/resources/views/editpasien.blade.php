@@ -148,10 +148,13 @@
                     <input type="text" name="Provinsi" class="form-control" value="{{ $pasien['provinsi'] }}" required>
                 </div>
             </div>
-</br>
             <div class="form-group">
-                <button type="submit" class="btn btn-primary">Simpan</button>
-                <a href="/pasien" class="btn btn-secondary">Batal</a>
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-save"></i> Update
+                </button>
+                <a href="/pasien" class="btn btn-secondary">
+                    <i class="bi bi-x-circle"></i> Batal
+                </a>
             </div>
         </form>
     </div>

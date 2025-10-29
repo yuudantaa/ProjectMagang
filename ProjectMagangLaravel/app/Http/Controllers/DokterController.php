@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use App\Services\ApiService;
-use App\Exports\DokterExport;
-use Maatwebsite\Excel\Facades\Excel;
 
 class DokterController extends Controller
 {
@@ -97,11 +95,6 @@ class DokterController extends Controller
                 "searchSpesialisasi" => ''
             ]);
         }
-    }
-
-    public function exportdokter()
-    {
-        return Excel::download(new DokterExport, 'dokter-' . date('Y-m-d') . '.xlsx');
     }
 
     public function tambahdokter(){

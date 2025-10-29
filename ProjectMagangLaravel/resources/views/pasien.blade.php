@@ -4,9 +4,6 @@
 
     <div class="card-header">
         <h4>Daftar Pasien</h4>
-        <a href="/exportpasien" class="btn btn-success">
-            <i class="bi bi-file-earmark-excel"></i> Export Excel
-        </a>
     </div>
     <div class="card-body">
         @if(session('alert-success'))

@@ -7,19 +7,21 @@
     <div class="carousel-inner">
         <div class="carousel-item active">
             <img src="{{ asset('images/antri.jpg') }}" class="d-block w-100" alt="rekamMedis" style="height: 300px; object-fit: cover;">
-            <div class="carousel-caption d-none d-md-block">
-                <div style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 15px; max-width: 90%; margin: 0 auto;">
-                    <div style="text-align: center; margin-bottom: 20px;">
-                        <h1 style="color: #fff; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">Selamat Datang Di Web Rekam Medis</h1>
-                        <h3 style="color: #fff; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">Rumah Sakit Bethesda Yogyakarta</h3>
-                    </div>
-                </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card bg-light">
+            <div class="card-body text-center">
+            <h1 class="mb-4" style="font-weight: bold;">Selamat Datang Di Web Rekam Medis</h1>
+            <h3 class="mb-2" style="font-weight: bold;">Rumah Sakit Bethesda Yogyakarta</h3>
             </div>
         </div>
     </div>
 </div>
 
-</br>
 <div class="card mb-12" style="max-width: auto;">
     <div class="row no-gutters">
         <div class="col-md-3" style="max-width: 10; height: 220px;">

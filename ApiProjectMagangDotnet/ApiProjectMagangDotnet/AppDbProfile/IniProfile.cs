@@ -29,9 +29,6 @@ namespace ApiProjectMagangDotnet.AppDbProfile
             CreateMap<Kunjungan, KunjunganAddDTO>();
             CreateMap<KunjunganAddDTO, Kunjungan>();
 
-            CreateMap<KunjunganUpdateDTO, Kunjungan>();
-            CreateMap<Kunjungan, KunjunganUpdateDTO>();
-
             //Dokter
             CreateMap<Dokter, DokterDTO>();
             CreateMap<DokterDTO, Dokter>();

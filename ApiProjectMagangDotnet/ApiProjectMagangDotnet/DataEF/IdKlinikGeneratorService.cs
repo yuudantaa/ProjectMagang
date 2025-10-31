@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ApiProjectMagangDotnet.DataEF
 {
-    public class IdKlinikGeneratorService : IIdKlinikGeneratorService
+    public class IdKlinikGeneratorService : InterfaceIdKlinik
     {
         private readonly ApplicationDbContext _context;
         private readonly Random _random;

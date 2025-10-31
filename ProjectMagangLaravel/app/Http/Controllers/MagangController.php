@@ -392,6 +392,57 @@ public function home(){
         }
     }
 
+public function simpanuser(Request $request)
+{
+    $client = new Client();
+
+    try {
+        $response = $client->post('http://localhost:5022/user', [
+            'json' => [
+                'username' => $request->username,
+                'password' => $request->password,
+                'namaUser' => $request->namaUser,
+                'email' => $request->email,
+                'nomorHP' => $request->nomorHp
+            ],
+            'headers' => [
+                'Accept' => 'application/json',
+                'Content-Type' => 'application/json'
+            ],
+            'timeout' => 30
+        ]);
+
+        $data = json_decode($response->getBody(), true);
+
+        if (isset($data['success']) && $data['success']) {
+            return redirect('/login')->with('alert-success',
+                'User berhasil ditambahkan! Silakan login dengan akun baru.');
+        } else {
+            return back()->with('alert-danger',
+                $data['message'] ?? 'Gagal menambahkan user')->withInput();
+        }
+
+    } catch (\GuzzleHttp\Exception\ClientException $e) {
+        $response = $e->getResponse();
+        $error = json_decode($response->getBody()->getContents(), true);
+
+        $errorMessage = $error['message'] ?? 'Terjadi kesalahan';
+
+        // Handle specific error cases
+        if (str_contains($errorMessage, 'Username')) {
+            return back()->with('alert-danger', $errorMessage)->withInput();
+        } elseif (str_contains($errorMessage, 'Email')) {
+            return back()->with('alert-danger', $errorMessage)->withInput();
+        } else {
+            return back()->with('alert-danger', $errorMessage)->withInput();
+        }
+
+    } catch (\Exception $e) {
+        return back()->with('alert-danger',
+            'Terjadi kesalahan: ' . $e->getMessage())->withInput();
+    }
+}
+
     public function prosescariusername(Request $request)
     {
         $client = new Client();
@@ -482,94 +533,4 @@ public function home(){
         return redirect('/login')->with('alert-success', 'Logout berhasil');
     }
 
-    public function simpanuser(Request $request)
-    {
-        $client = new \GuzzleHttp\Client();
-
-        try {
-            $response = $client->post('http://localhost:5022/user', [
-                'json' => [
-                    'username' => $request->username,
-                    'password' => $request->password,
-                    'namaUser' => $request->namaUser,
-                    'email' => $request->email,
-                    'nomorHP' => $request->nomorHP
-                ],
-                'headers' => [
-                    'Accept' => 'application/json',
-                    'Content-Type' => 'application/json'
-                ],
-                'timeout' => 30
-            ]);
-
-            if ($response->getStatusCode() === 201) {
-                return redirect('/login')->with('alert-success', 'Data user berhasil disimpan');
-            } else {
-                return back()->with('alert-danger', 'Gagal menyimpan data user')->withInput();
-            }
-
-        } catch (\GuzzleHttp\Exception\ClientException $e) {
-            $response = $e->getResponse();
-            $errorBody = $response->getBody()->getContents();
-
-            $errorMessage = 'Gagal menyimpan data user';
-            try {
-                $errorData = json_decode($errorBody, true);
-                if (isset($errorData['message'])) {
-                    $errorMessage = $errorData['message'];
-                }
-            } catch (\Exception $parseError) {
-                // Gunakan default message
-            }
-
-            return back()->with('alert-danger', $errorMessage)->withInput();
-
-        } catch (\Exception $e) {
-            return back()->with('alert-danger', 'Gagal menyimpan data user: ' . $e->getMessage())->withInput();
-        }
-    }
-
-
-    public function edituser($id)
-    {
-        $client = new Client();
-
-        try {
-            // Ambil data Pasien
-            $response = $client->get("http://localhost:5022/user/{$id}");
-            $user = json_decode($response->getBody(), true);
-
-            return view("edituser", [
-                "key" => "user",
-                "user" => $user,
-            ]);
-        } catch (\Exception $e) {
-            session()->flash('alert', 'Gagal mengambil data: ' . $e->getMessage());
-            return redirect('/home');
-        }
-    }
-
-
-    public function updateuser($id, Request $request)
-    {
-        $client = new Client();
-
-        try {
-            $response = $client->put("http://localhost:5022/user", [
-                'json' => [
-                    'username' => $request->username,
-                    'password' => $request->password,
-                    'namaUser' => $request->namaUser,
-                    'email' => $request->email,
-                    'nomorHP' => $request->nomorHP
-                ]
-            ]);
-
-            session()->flash('alert', 'Data user berhasil diupdate');
-        } catch (\Exception $e) {
-            session()->flash('alert', 'Gagal update data: ' . $e->getMessage());
-        }
-
-        return redirect('/');
-    }
 }

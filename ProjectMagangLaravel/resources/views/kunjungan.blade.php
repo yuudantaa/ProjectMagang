@@ -44,6 +44,7 @@
                        value="{{ $searchBulan }}" placeholder="Pilih bulan...">
             </div>
         </div>
+
         <div class="col-md-4">
             <div class="form-group">
                 <label for="searchDokter">Cari Berdasarkan Dokter</label>
@@ -56,6 +57,7 @@
                 </datalist>
             </div>
         </div>
+
         <div class="col-md-4">
             <div class="form-group">
                 <label for="searchKlinik">Cari Berdasarkan Klinik</label>
@@ -68,6 +70,7 @@
                 </datalist>
             </div>
         </div>
+
     </div>
 
     <!-- Tombol Reset -->

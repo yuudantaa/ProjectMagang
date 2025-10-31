@@ -62,8 +62,6 @@
             <div class="card">
                 <div class="card-header">
                     @yield('login')
-                    @yield('createUser')
-                    @yield('lupaPassword')
                 </div>
             </div>
         </div>

@@ -47,7 +47,7 @@
 
         <div class="text-center">
             <p class="mb-0">
-                <a href="/login">Kembali ke login</a>
+                <a href="/login">Batalkan pencarian user</a>
             </p>
         </div>
     </form>

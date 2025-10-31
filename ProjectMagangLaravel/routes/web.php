@@ -14,7 +14,7 @@ Route::get("/login","MagangController@login");
 Route::get("/tambah-user","MagangController@tambahuser");
 Route::get("/logout","MagangController@logout");
 Route::post('/login', "MagangController@proseslogin");
-
+Route::post('/simpan-user', "MagangController@simpanuser");
 // routes/web.php
 Route::get('/lupa-password', "MagangController@lupapassword");
 Route::post('/proses-lupa-password', "MagangController@proseslupapassword");
@@ -36,7 +36,6 @@ Route::get('/kunjungan',"KunjunganController@kunjungan");
 Route::get('/kunjungan-lama',"KunjunganController@kunjunganlama");
 
 Route::post('/save-klinik', "KlinikController@simpanklinik");
-Route::post('/save-user', "MagangController@simpanuser");
 Route::post('/save-dokter', "DokterController@simpandokter");
 Route::post('/save-kunjungan', "KunjunganController@simpankunjungan");
 Route::post('/save-kunjungan-lama', "KunjunganController@simpankunjunganlama");
@@ -73,9 +72,6 @@ Route::put('/update-kunjungan-lama/{id}', "KunjunganController@updatekunjunganla
 Route::get('/pasien/edit/{id}', "PasienController@editPasien");
 Route::post('/save-pasien', "PasienController@simpanpasien");
 Route::put('/update-pasien/{id}', "MagangController@updatepasien");
-
-Route::get('/edit-user{id}', "MagangController@edituser");
-Route::put('/update-user/{id}', "MagangController@updateuser");
 
 Route::get('/check-duplicate-kunjungan', [KunjunganController::class, 'checkDuplicateKunjungan']);
 

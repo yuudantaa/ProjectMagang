@@ -42,8 +42,8 @@ builder.Services.AddScoped<IRekamMedis, RekamMedisEF>();
 builder.Services.AddScoped<IKunjungan, KunjunganEF>();
 builder.Services.AddScoped<IAspUser, UserEF>();
 builder.Services.AddScoped<IUserPasien, UserPasienEF>();
-builder.Services.AddScoped<IIdDokterGeneratorService, IdDokterGeneratorService>();
-builder.Services.AddScoped<IIdKlinikGeneratorService, IdKlinikGeneratorService>();
+builder.Services.AddScoped<interfaceIdDokter, IdDokterGeneratorService>();
+builder.Services.AddScoped<InterfaceIdKlinik, IdKlinikGeneratorService>();
 builder.Services.AddScoped<IRekamMedis>(provider => 
     new RekamMedisEF(
         provider.GetRequiredService<ApplicationDbContext>(),
@@ -733,7 +733,7 @@ app.MapGet("/Dokter/{id}",(IDokter dokterData, string id, IMapper mapper)=>
 }).WithTags("Dokter");
 
 app.MapPost("/Dokter", async (IDokter dokterData, DokterAddDTO dokterAddDTO, 
-    IMapper mapper, IIdDokterGeneratorService idGenerator) =>
+    IMapper mapper, interfaceIdDokter idGenerator) =>
 {
     var validationResults = new List<ValidationResult>();
     var validationContext = new ValidationContext(dokterAddDTO);
@@ -800,7 +800,7 @@ app.MapGet("/Klinik/{id}",(IKlinik klinikData, string id, IMapper mapper)=>
 }).WithTags("Klinik");
 
 app.MapPost("/Klinik", async (IKlinik klinikData, KlinikAddDTO klinikAddDTO, 
-    IMapper mapper, IIdKlinikGeneratorService idGenerator) =>
+    IMapper mapper, InterfaceIdKlinik idGenerator) =>
 {
     var validationResults = new List<ValidationResult>();
     var validationContext = new ValidationContext(klinikAddDTO);

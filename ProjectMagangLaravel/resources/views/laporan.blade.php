@@ -84,8 +84,8 @@
             </span>
         </div>
     </div>
-
-    <table id="laporanTable" class="table table-striped table-bordered" style="width:100%">
+    <div class="table-responsive">
+    <table id="laporanTable" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
         <thead>
             <tr>
                 <th>No</th>
@@ -122,7 +122,7 @@
         </tbody>
     </table>
 </div>
-
+</div>
 <!-- Preview & Print Modal -->
 <div class="modal fade" id="previewModal" tabindex="-1" role="dialog" aria-labelledby="previewModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl" role="document">

@@ -23,7 +23,7 @@
   },
   {
     "ContainingType": "Program\u002B\u003C\u003Ec",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_33",
+    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_34",
     "RelativePath": "Dokter",
     "HttpMethod": "GET",
     "IsController": false,
@@ -42,7 +42,7 @@
   },
   {
     "ContainingType": "Program\u002B\u003C\u003Ec",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_35",
+    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_36",
     "RelativePath": "Dokter",
     "HttpMethod": "POST",
     "IsController": false,
@@ -67,7 +67,7 @@
   },
   {
     "ContainingType": "Program\u002B\u003C\u003Ec",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_36",
+    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_37",
     "RelativePath": "Dokter",
     "HttpMethod": "PUT",
     "IsController": false,
@@ -94,7 +94,7 @@
   },
   {
     "ContainingType": "Program\u002B\u003C\u003Ec",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_34",
+    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_35",
     "RelativePath": "Dokter/{id}",
     "HttpMethod": "GET",
     "IsController": false,
@@ -119,7 +119,7 @@
   },
   {
     "ContainingType": "Program\u002B\u003C\u003Ec",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_37",
+    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_38",
     "RelativePath": "Dokter/{id}",
     "HttpMethod": "DELETE",
     "IsController": false,
@@ -144,7 +144,7 @@
   },
   {
     "ContainingType": "Program\u002B\u003C\u003Ec",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_38",
+    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_39",
     "RelativePath": "Klinik",
     "HttpMethod": "GET",
     "IsController": false,
@@ -163,7 +163,7 @@
   },
   {
     "ContainingType": "Program\u002B\u003C\u003Ec",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_40",
+    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_41",
     "RelativePath": "Klinik",
     "HttpMethod": "POST",
     "IsController": false,
@@ -188,7 +188,7 @@
   },
   {
     "ContainingType": "Program\u002B\u003C\u003Ec",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_41",
+    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_42",
     "RelativePath": "Klinik",
     "HttpMethod": "PUT",
     "IsController": false,
@@ -215,7 +215,7 @@
   },
   {
     "ContainingType": "Program\u002B\u003C\u003Ec",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_39",
+    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_40",
     "RelativePath": "Klinik/{id}",
     "HttpMethod": "GET",
     "IsController": false,
@@ -240,7 +240,7 @@
   },
   {
     "ContainingType": "Program\u002B\u003C\u003Ec",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_42",
+    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_43",
     "RelativePath": "Klinik/{id}",
     "HttpMethod": "DELETE",
     "IsController": false,
@@ -423,6 +423,11 @@
         "Name": "klinik",
         "Type": "System.String",
         "IsRequired": true
+      },
+      {
+        "Name": "tanggal",
+        "Type": "System.String",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": [
@@ -489,8 +494,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "kunjunganUpdateDTO",
-        "Type": "ApiProjectMagangDotnet.DTO.KunjunganUpdateDTO",
+        "Name": "kunjungan",
+        "Type": "ApiProjectMagangDotnet.Models.Kunjungan",
         "IsRequired": true
       }
     ],
@@ -532,7 +537,32 @@
   },
   {
     "ContainingType": "Program\u002B\u003C\u003Ec",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_43",
+    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_33",
+    "RelativePath": "kunjungan/user/{username}",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "username",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Kunjungan"
+    ]
+  },
+  {
+    "ContainingType": "Program\u002B\u003C\u003Ec",
+    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_44",
     "RelativePath": "Pasien",
     "HttpMethod": "GET",
     "IsController": false,
@@ -551,7 +581,7 @@
   },
   {
     "ContainingType": "Program\u002B\u003C\u003Ec",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_45",
+    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_46",
     "RelativePath": "Pasien",
     "HttpMethod": "POST",
     "IsController": false,
@@ -576,7 +606,7 @@
   },
   {
     "ContainingType": "Program\u002B\u003C\u003Ec",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_46",
+    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_47",
     "RelativePath": "Pasien",
     "HttpMethod": "PUT",
     "IsController": false,
@@ -603,7 +633,7 @@
   },
   {
     "ContainingType": "Program\u002B\u003C\u003Ec",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_44",
+    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_45",
     "RelativePath": "Pasien/{id}",
     "HttpMethod": "GET",
     "IsController": false,
@@ -628,7 +658,7 @@
   },
   {
     "ContainingType": "Program\u002B\u003C\u003Ec",
-    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_47",
+    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_48",
     "RelativePath": "Pasien/{id}",
     "HttpMethod": "DELETE",
     "IsController": false,

@@ -32,9 +32,10 @@ class KunjunganController extends Controller
             $searchBulan = $request->get('bulan');
             $searchDokter = $request->get('dokter');
             $searchKlinik = $request->get('klinik');
+            $searchPasien = $request->get('rekamMedis');
 
-            if ($searchBulan || $searchDokter || $searchKlinik) {
-                $kunjungan = array_filter($kunjungan, function($item) use ($searchBulan, $searchDokter, $searchKlinik) {
+            if ($searchBulan || $searchDokter || $searchKlinik || $searchPasien) {
+                $kunjungan = array_filter($kunjungan, function($item) use ($searchBulan, $searchDokter, $searchKlinik, $searchPasien) {
                     $match = true;
 
                     // Filter berdasarkan bulan (format: YYYY-MM)
@@ -56,6 +57,12 @@ class KunjunganController extends Controller
                         $match = $match && (stripos($namaKlinik, $searchKlinik) !== false);
                     }
 
+                    // Filter berdasarkan nama pasien
+                    if ($searchPasien && $match) {
+                        $namaPasien = $item['rekamMedis']['nama'] ?? '';
+                        $match = $match && (stripos($namaPasien, $searchPasien) !== false);
+                    }
+
                     return $match;
                 });
             }
@@ -64,7 +71,7 @@ class KunjunganController extends Controller
             $bulanList = [];
             $dokterList = [];
             $klinikList = [];
-
+            $pasienList = [];
             foreach ($kunjungan as $item) {
                 // Extract bulan
                 $tanggal = $item['tanggal'] ?? $item['Tanggal'] ?? '';
@@ -87,6 +94,12 @@ class KunjunganController extends Controller
                 if ($klinikNama && !in_array($klinikNama, $klinikList)) {
                     $klinikList[] = $klinikNama;
                 }
+
+                // Extract pasien
+                $pasienNama = $item['rekamMedis']['nama'] ?? '';
+                if ($pasienNama && !in_array($pasienNama, $pasienList)) {
+                    $pasienList[] = $pasienNama;
+                }
             }
 
             // Sort lists
@@ -95,15 +108,18 @@ class KunjunganController extends Controller
             });
             sort($dokterList);
             sort($klinikList);
+            sort($pasienList);
 
             return view("kunjungan", [
                 "key" => "kunjungan",
                 "ps" => array_values($kunjungan),
                 "bulanList" => $bulanList,
                 "dokterList" => $dokterList,
+                "pasienList" => $pasienList,
                 "klinikList" => $klinikList,
                 "searchBulan" => $searchBulan,
                 "searchDokter" => $searchDokter,
+                "searchPasien" => $searchPasien,
                 "searchKlinik" => $searchKlinik
             ]);
 
@@ -115,8 +131,10 @@ class KunjunganController extends Controller
                 "bulanList" => [],
                 "dokterList" => [],
                 "klinikList" => [],
+                "pasienList" => [],
                 "searchBulan" => '',
                 "searchDokter" => '',
+                "searchPasien" => '',
                 "searchKlinik" => ''
             ]);
         }
@@ -146,9 +164,10 @@ class KunjunganController extends Controller
             $searchBulan = $request->get('bulan');
             $searchDokter = $request->get('dokter');
             $searchKlinik = $request->get('klinik');
+            $searchPasien = $request->get('rekamMedis');
 
-            if ($searchBulan || $searchDokter || $searchKlinik) {
-                $kunjungan = array_filter($kunjungan, function($item) use ($searchBulan, $searchDokter, $searchKlinik) {
+            if ($searchBulan || $searchDokter || $searchKlinik || $searchPasien) {
+                $kunjungan = array_filter($kunjungan, function($item) use ($searchBulan, $searchDokter, $searchKlinik, $searchPasien) {
                     $match = true;
 
                     // Filter berdasarkan bulan (format: YYYY-MM)
@@ -170,6 +189,11 @@ class KunjunganController extends Controller
                         $match = $match && (stripos($namaKlinik, $searchKlinik) !== false);
                     }
 
+                    // Filter berdasarkan rekam medis pasien
+                    if ($searchPasien && $match) {
+                        $rekamMedis = $item['rekamMedis']['nama'] ?? '';
+                        $match = $match && (stripos($rekamMedis, $searchPasien) !== false);
+                    }
                     return $match;
                 });
             }
@@ -178,6 +202,7 @@ class KunjunganController extends Controller
             $bulanList = [];
             $dokterList = [];
             $klinikList = [];
+            $pasienList = [];
 
             foreach ($kunjungan as $item) {
                 // Extract bulan
@@ -201,6 +226,11 @@ class KunjunganController extends Controller
                 if ($klinikNama && !in_array($klinikNama, $klinikList)) {
                     $klinikList[] = $klinikNama;
                 }
+                // Extract pasien
+                $pasienNama = $item['rekamMedis']['nama'] ?? '';
+                if ($pasienNama && !in_array($pasienNama, $pasienList)) {
+                    $pasienList[] = $pasienNama;
+                }
             }
 
             // Sort lists
@@ -209,6 +239,7 @@ class KunjunganController extends Controller
             });
             sort($dokterList);
             sort($klinikList);
+            sort($pasienList);
 
             return view("kunjunganlama", [
                 "key" => "kunjunganlama",
@@ -216,8 +247,10 @@ class KunjunganController extends Controller
                 "bulanList" => $bulanList,
                 "dokterList" => $dokterList,
                 "klinikList" => $klinikList,
+                "pasienList" => $pasienList,
                 "searchBulan" => $searchBulan,
                 "searchDokter" => $searchDokter,
+                "searchPasien" => $searchPasien,
                 "searchKlinik" => $searchKlinik
             ]);
 
@@ -229,8 +262,10 @@ class KunjunganController extends Controller
                 "bulanList" => [],
                 "dokterList" => [],
                 "klinikList" => [],
+                "pasienList" => [],
                 "searchBulan" => '',
                 "searchDokter" => '',
+                "searchPasien" => '',
                 "searchKlinik" => ''
             ]);
         }

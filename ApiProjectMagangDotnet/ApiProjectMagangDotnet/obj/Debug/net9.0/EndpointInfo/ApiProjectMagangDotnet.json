@@ -577,7 +577,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/KunjunganUpdateDTO"
+                "$ref": "#/components/schemas/Kunjungan"
               }
             }
           },
@@ -649,6 +649,36 @@
           {
             "name": "klinik",
             "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tanggal",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/kunjungan/user/{username}": {
+      "get": {
+        "tags": [
+          "Kunjungan"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
             "required": true,
             "schema": {
               "type": "string"
@@ -1200,40 +1230,6 @@
             "nullable": true
           },
           "jenisKunjungan": {
-            "type": "string",
-            "nullable": true
-          },
-          "keluhan": {
-            "type": "string",
-            "nullable": true
-          },
-          "diagnosis": {
-            "type": "string",
-            "nullable": true
-          },
-          "noAntrian": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "tanggal": {
-            "type": "string",
-            "format": "date"
-          }
-        },
-        "additionalProperties": false
-      },
-      "KunjunganUpdateDTO": {
-        "type": "object",
-        "properties": {
-          "id_RekamMedis": {
-            "type": "string",
-            "nullable": true
-          },
-          "id_Dokter": {
-            "type": "string",
-            "nullable": true
-          },
-          "id_Klinik": {
             "type": "string",
             "nullable": true
           },

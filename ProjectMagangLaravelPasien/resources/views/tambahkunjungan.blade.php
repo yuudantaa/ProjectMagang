@@ -59,26 +59,6 @@
                         <label>Nama Pasien</label>
                         <input type="text" id="namaPasien" value="{{ session('nama')}}" class="form-control" readonly>
                     </div>
-                    <div class="col-md-4">
-                        <label>Tanggal Lahir</label>
-                        <input type="text" id="tanggalLahir" class="form-control" readonly>
-                    </div>
-                    <div class="col-md-4">
-                        <label>Alamat</label>
-                        <input type="text" id="alamat" class="form-control" readonly>
-                    </div>
-                    <div class="col-md-4">
-                        <label>Kecamatan</label>
-                        <input type="text" id="kecamatan" class="form-control" readonly>
-                    </div>
-                    <div class="col-md-4">
-                        <label>Kabupaten</label>
-                        <input type="text" id="kabupaten" class="form-control" readonly>
-                    </div>
-                    <div class="col-md-4">
-                        <label>Provinsi</label>
-                        <input type="text" id="provinsi" class="form-control" readonly>
-                    </div>
                 </div>
             </div>
 

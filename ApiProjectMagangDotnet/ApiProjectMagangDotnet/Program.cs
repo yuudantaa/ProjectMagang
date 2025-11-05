@@ -201,7 +201,7 @@ app.MapPost("/user/forgot-password", async (IAspUser aspUserData, ForgotPassword
         {
             return Results.Ok(new { 
                 success = true, 
-                message = $"Akun dengan email/username {forgotPasswordDto.EmailOrUsername} tidak terdaftar, Silahkan buat akun baru" 
+                message = $"Akun dengan email {forgotPasswordDto.EmailOrUsername} tidak terdaftar, Silahkan buat akun baru" 
             });
         }
 
@@ -230,7 +230,7 @@ app.MapPost("/user/find-username", (IAspUser aspUserData, FindUsernameDTO findUs
             return Results.Ok(new
             {
                 success = true,
-                message = "Jika email terdaftar, username akan dikirim ke email Anda"
+                message = $"Akun dengan email {findUsernameDto.Email} tidak terdaftar, Silahkan buat akun baru" 
             });
         }
 

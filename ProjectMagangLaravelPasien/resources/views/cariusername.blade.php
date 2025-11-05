@@ -46,11 +46,8 @@
         </div>
 
         <div class="text-center">
-            <p class="mb-2">
-                <a href="/lupa-password">Lupa password?</a>
-            </p>
             <p class="mb-0">
-                <a href="/login">Kembali ke login</a>
+                <a href="/login">Batalkan Pencarian </a>
             </p>
         </div>
     </form>

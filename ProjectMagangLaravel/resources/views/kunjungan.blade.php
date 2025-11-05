@@ -71,6 +71,19 @@
             </div>
         </div>
 
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="searchPasien">Cari Berdasarkan Pasien</label>
+                <input type="text" class="form-control" id="searchPasien" name="rekamMedis"
+                       value="{{ $searchPasien }}" placeholder="Ketikan nama pasien..." list="pasienList">
+                <datalist id="pasienList">
+                    @foreach($pasienList as $pasien)
+                        <option value="{{ $pasien }}">
+                    @endforeach
+                </datalist>
+            </div>
+        </div>
+
     </div>
 
     <!-- Tombol Reset -->
@@ -85,7 +98,8 @@
         </div>
     </div>
 
-        <table id="kunjunganbaru" class="table table-striped table-bordered" style="width:100%">
+    <div class="table-responsive">
+        <table id="kunjunganBaru" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
             <thead>
                 <tr>
                     <th>No</th>
@@ -130,7 +144,7 @@
                 @endforeach
             </tbody>
         </table>
-
+        </div>
     </div>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -138,6 +152,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const searchBulan = document.getElementById('searchBulan');
     const searchDokter = document.getElementById('searchDokter');
     const searchKlinik = document.getElementById('searchKlinik');
+    const searchPasien = document.getElementById('searchPasien');
     const resetButton = document.getElementById('resetSearch');
 
     function submitSearch() {
@@ -145,6 +160,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (searchBulan.value) params.append('bulan', searchBulan.value);
         if (searchDokter.value) params.append('dokter', searchDokter.value);
         if (searchKlinik.value) params.append('klinik', searchKlinik.value);
+        if (searchPasien.value) params.append('rekamMedis', searchPasien.value);
         window.location.href = '/kunjungan?' + params.toString();
     }
 
@@ -160,6 +176,12 @@ document.addEventListener('DOMContentLoaded', function() {
     searchKlinik.addEventListener('input', function() {
         clearTimeout(klinikTimeout);
         klinikTimeout = setTimeout(submitSearch, 500);
+    });
+
+    let pasienTimeout;
+    searchPasien.addEventListener('input', function() {
+        clearTimeout(pasienTimeout);
+        pasienTimeout = setTimeout(submitSearch, 500);
     });
 
     resetButton.addEventListener('click', function() {

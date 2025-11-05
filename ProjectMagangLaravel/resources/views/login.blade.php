@@ -31,7 +31,7 @@
 
     <form action="/login" method="post">
     @csrf
-    <img src="{{ asset('images/image.png') }}" class="img-mx-auto d-block" alt="rekamMedis" style="height: 150px; object-fit: cover;">
+    <img src="{{ asset('images/images.png') }}" class="img-mx-auto d-block" alt="rekamMedis" style="height: 150px; object-fit: cover;">
     </br>
 
     <div class="form-group">

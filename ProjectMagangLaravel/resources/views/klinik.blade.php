@@ -66,6 +66,7 @@
         </div>
     </div>
 
+    <div class="table-responsive">
         <table id="klinikTable" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
@@ -107,6 +108,7 @@
         </table>
 
     </div>
+</div>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {

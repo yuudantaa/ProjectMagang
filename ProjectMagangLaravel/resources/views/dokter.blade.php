@@ -65,8 +65,8 @@
             </span>
         </div>
     </div>
-
-        <table id="dokterTable" class="table table-striped table-bordered" style="width:100%">
+    <div class="table-responsive">
+        <table id="dokterTable" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
             <thead>
                 <tr>
                     <th>No</th>
@@ -107,7 +107,7 @@
                 @endforeach
             </tbody>
         </table>
-
+    </div>
     </div>
 
     <script>

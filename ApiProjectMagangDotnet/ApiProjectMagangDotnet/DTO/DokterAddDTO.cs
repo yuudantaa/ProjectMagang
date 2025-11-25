@@ -8,7 +8,7 @@ namespace ApiProjectMagangDotnet.DTO
 {
     public class DokterAddDTO
     {
-         public string? Id_Dokter { get; set; } 
+        public string? Id_Dokter { get; set; } 
         public string Nama { get; set; } = null!;
 
         public string Spesialisasi { get; set; } = null!;

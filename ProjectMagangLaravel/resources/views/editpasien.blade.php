@@ -127,12 +127,11 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                <label>Alamat</label>
-                <textarea name="Alamat" class="form-control" value="{{ $pasien['alamat'] }}" required></textarea>
-            </div>
-
             <div class="form-row">
+            <div class="form-group col-md-4">
+                <label>Alamat</label>
+                <input type="text" name="Alamat" class="form-control" value="{{ $pasien['alamat'] }}" required>
+            </div>
                 <div class="form-group col-md-4">
                     <label>Kecamatan</label>
                     <input type="text" name="Kecamatan" class="form-control" value="{{ $pasien['kecamatan'] }}" required>

@@ -48,7 +48,6 @@
                     <th>Klinik</th>
                     <th>Dokter</th>
                     <th>Keluhan</th>
-                    <th>Diagnosis</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -64,7 +63,6 @@
                         <td>{{ $p['klinik']['nama'] ?? '-' }}</td>
                         <td>{{ $p['dokter']['nama'] ?? '-' }}</td>
                         <td>{{ $p['keluhan'] ?? '-' }}</td>
-                        <td>{{ $p['diagnosis'] ?? '-' }}</td>
                         <td>
                             <a href="/kunjungan/{{ $p['id_Kunjungan'] }}" class="btn btn-primary btn-sm">
                                 <i class="bi bi-eye"></i>

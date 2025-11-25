@@ -72,8 +72,13 @@
             </div>
 
             <div class="form-group">
-                    <button type="submit" class="btn btn-primary">simpan</button>
-                </div>
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-save"></i> Simpan
+                </button>
+                <a href="/dokter" class="btn btn-secondary">
+                    <i class="bi bi-x-circle"></i> Batal
+                </a>
+            </div>
         </form>
     </div>
 </div>

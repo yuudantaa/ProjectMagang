@@ -119,12 +119,12 @@
 
             <div class="form-group">
                 <label>Keluhan *</label>
-                <textarea name="Keluhan" class="form-control" rows="3" required>{{ $kunjungan['keluhan'] ?? '' }}</textarea>
+                <textarea name="Keluhan" class="form-control" rows="3">{{ $kunjungan['keluhan'] ?? '' }}</textarea>
             </div>
 
             <div class="form-group">
                 <label>Diagnosis *</label>
-                <textarea name="Diagnosis" class="form-control" rows="3" required>{{ $kunjungan['diagnosis'] ?? '' }}</textarea>
+                <textarea name="Diagnosis" class="form-control" rows="3">{{ $kunjungan['diagnosis'] ?? '' }}</textarea>
             </div>
 
             <div class="form-group">

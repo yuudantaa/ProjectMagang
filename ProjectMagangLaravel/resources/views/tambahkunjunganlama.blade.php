@@ -133,12 +133,12 @@
 
             <div class="form-group">
                 <label>Keluhan *</label>
-                <textarea name="Keluhan" class="form-control" rows="3" required placeholder="Masukkan keluhan pasien"></textarea>
+                <textarea name="Keluhan" class="form-control" rows="3"></textarea>
             </div>
 
             <div class="form-group">
                 <label>Diagnosis *</label>
-                <textarea name="Diagnosis" class="form-control" rows="3" required placeholder="Masukkan diagnosis dokter"></textarea>
+                <textarea name="Diagnosis" class="form-control" rows="3"></textarea>
             </div>
 
             <div class="form-group">

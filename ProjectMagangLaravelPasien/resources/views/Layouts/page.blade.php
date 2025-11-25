@@ -28,7 +28,7 @@
             <a class="nav-link" href="/kunjungan"><i class="bi bi-clipboard2-pulse-fill"> Kunjungan </i></a>
         </li>
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
            <i class="bi bi-file-person"></i> {{ session('nama') ?? 'User' }}
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">

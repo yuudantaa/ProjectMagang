@@ -28,8 +28,8 @@ namespace ApiProjectMagangDotnet.Models
         [ForeignKey("Klinik")]
         public string Id_Klinik { get; set; } = null!;
 
-        public string Keluhan { get; set; } = null!;
-        public string Diagnosis { get; set; } = null!;
+        public string? Keluhan { get; set; } 
+        public string? Diagnosis { get; set; } 
         public RekamMedis? RekamMedis { get; set; } = null!;
         public Klinik? Klinik { get; set; } = null!;
         public Dokter? Dokter { get; set; } = null!;

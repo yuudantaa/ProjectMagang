@@ -21,11 +21,6 @@ builder.Services.AddCors(options =>
                         .AllowCredentials());
 });
 
-builder.Services.Configure<Microsoft.AspNetCore.Http.Json.JsonOptions>(options =>
-{
-    options.SerializerOptions.Converters.Add(new DateOnlyJsonConverter());
-});
-
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

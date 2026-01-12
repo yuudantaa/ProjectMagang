@@ -13,7 +13,7 @@ namespace ApiProjectMagangDotnet.Data
     {
         public string GenerateKunjunganId(string idRekamMedis, string idDokter, string idKlinik, DateOnly tanggal)
         {
-                    string tahun = tanggal.Year.ToString("D4");
+        string tahun = tanggal.Year.ToString("D4");
         string bulan = tanggal.Month.ToString("D2");
         string hari = tanggal.Day.ToString("D2");
         
@@ -25,17 +25,5 @@ namespace ApiProjectMagangDotnet.Data
         return $"{tahun}{bulan}{hari}_{rekamMedisSuffix}_{dokterSuffix}_{klinikSuffix}";
     }
     
-    // Alternatif: Format lebih sederhana
-    public string GenerateSimpleKunjunganId(string idRekamMedis, DateOnly tanggal)
-    {
-        string tahun = tanggal.Year.ToString("D4");
-        string bulan = tanggal.Month.ToString("D2");
-        string hari = tanggal.Day.ToString("D2");
-        
-        // Mengambil 6 karakter terakhir dari ID Rekam Medis
-        string rekamMedisSuffix = idRekamMedis.Length > 6 ? idRekamMedis.Substring(idRekamMedis.Length - 6) : idRekamMedis;
-        
-        return $"KJ_{tahun}{bulan}{hari}_{rekamMedisSuffix}";
-    }
     }
 }

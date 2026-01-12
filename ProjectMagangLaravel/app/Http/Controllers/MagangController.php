@@ -16,62 +16,6 @@ public function home(){
     $today = date('Y-m-d');
 
     try {
-        // Data Pasien Hari Ini
-        \Log::info('Mengambil data pasien dari API...');
-        $response = $client->get('http://localhost:5022/pasien', [
-            'timeout' => 30,
-            'headers' => ['Accept' => 'application/json']
-        ]);
-
-        $allPasien = json_decode($response->getBody(), true);
-
-        // Debug response structure
-        \Log::info('Response structure:', $allPasien);
-
-        // Handle different response structures
-        if (isset($allPasien['data']) && is_array($allPasien['data'])) {
-            $allPasien = $allPasien['data'];
-        } elseif (isset($allPasien['result']) && is_array($allPasien['result'])) {
-            $allPasien = $allPasien['result'];
-        } elseif (is_array($allPasien)) {
-            // Jika langsung array, gunakan langsung
-            $allPasien = $allPasien;
-        } else {
-            $allPasien = [];
-        }
-
-        \Log::info('Processed pasien data:', ['count' => count($allPasien), 'sample' => $allPasien[0] ?? 'No data']);
-
-        // Filter pasien yang dibuat hari ini
-        $pasienHariIni = array_filter($allPasien, function($item) use ($today) {
-            // Cek berbagai kemungkinan field tanggal
-            $dateFields = ['created_at', 'tanggal_dibuat', 'TanggalDibuat', 'tgl_daftar'];
-
-            foreach ($dateFields as $field) {
-                if (isset($item[$field]) && !empty($item[$field])) {
-                    try {
-                        $createdDate = date('Y-m-d', strtotime($item[$field]));
-                        return $createdDate === $today;
-                    } catch (\Exception $e) {
-                        continue;
-                    }
-                }
-            }
-            return false;
-        });
-
-        $stats['total_pasien'] = count($pasienHariIni);
-        $stats['pasien_hari_ini'] = array_values($pasienHariIni);
-
-        \Log::info('Pasien hari ini:', ['total' => $stats['total_pasien'], 'data' => $stats['pasien_hari_ini']]);
-
-    } catch (\Exception $e) {
-        \Log::error('Error mengambil data pasien: ' . $e->getMessage());
-        $stats['total_pasien'] = 0;
-        $stats['pasien_hari_ini'] = [];
-    }
-
-    try {
         // Data Kunjungan Hari Ini (Gabungan Baru + Lama)
         $responseKunjungan = $client->get('http://localhost:5022/kunjungan/All', [
             'timeout' => 30,
@@ -468,7 +412,7 @@ public function simpanuser(Request $request)
                         "Username Anda: <strong>{$data['username']}</strong><br>
                         <a href='" . url('/login') . "' class='btn btn-primary btn-sm'>Klik di sini untuk login</a>");
                 } else {
-                    session()->flash('alert-success', $data['message']);
+                    session()->flash('alert-danger', $data['message']);
                 }
             } else {
                 session()->flash('alert-danger', $data['message'] ?? 'Terjadi kesalahan');

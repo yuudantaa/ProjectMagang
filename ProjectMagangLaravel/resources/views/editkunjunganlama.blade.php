@@ -33,20 +33,17 @@
                 <div class="form-group col-md-4">
                     <label>Tanggal *</label>
                     <input type="date" name="Tanggal" class="form-control" required
-                           value="{{ $kunjungan['tanggal'] ?? date('Y-m-d') }}">
+                           value="{{ $kunjungan['tanggal'] ?? date('Y-m-d') }}" readonly>
                 </div>
                 <div class="form-group col-md-4">
                     <label>No Antrian *</label>
                     <input type="number" name="NoAntrian" class="form-control" required min="1"
-                           value="{{ $kunjungan['noAntrian'] ?? '' }}">
+                           value="{{ $kunjungan['noAntrian'] ?? '' }}" readonly>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="d-block mb-2">Data Pasien *</label>
-                <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#pasienModal">
-                    <i class="bi bi-search"></i> Cari Pasien
-                </button>
 
                 <div class="row">
                     <div class="col-md-4">
@@ -139,67 +136,25 @@
     </div>
 </div>
 
-<!-- Modal Pasien -->
-<div class="modal fade" id="pasienModal" tabindex="-1" role="dialog" aria-labelledby="pasienModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="pasienModalLabel">Cari dan Pilih Pasien</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <input type="text" id="searchPasien" class="form-control" placeholder="Cari Nama Pasien">
-                </div>
-                <div class="table-responsive">
-                    <table class="table table-striped table-bordered" id="tabelPasien">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>No Rekam Medis</th>
-                                <th>Nama</th>
-                                <th>Tanggal Lahir</th>
-                                <th>Gender</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody id="pasienTableBody">
-                            @foreach($pasiens as $pasien)
-                            <tr>
-                                <td>{{ $pasien['id_RekamMedis'] ?? 'N/A' }}</td>
-                                <td>{{ $pasien['nama'] ?? 'N/A' }}</td>
-                                <td>{{ $pasien['tanggalLahir'] ?? 'N/A' }}</td>
-                                <td>{{ $pasien['gender'] ?? 'N/A' }}</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary btn-sm pilih-pasien"
-                                        data-id="{{ $pasien['id_RekamMedis'] }}"
-                                        data-nama="{{ $pasien['nama'] }}"
-                                        data-tanggallahir="{{ $pasien['tanggalLahir'] }}">
-                                        Pilih
-                                    </button>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 <!-- Modal Dokter -->
 <div class="modal fade" id="dokterModal" tabindex="-1" role="dialog" aria-labelledby="dokterModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="dokterModalLabel">Cari dan Pilih Dokter</h5>
+                <h5 class="modal-title" id="dokterModalLabel">
+                    Cari dan Pilih Dokter
+                    <small class="text-muted">(Hanya menampilkan dokter yang praktek pada {{ $today }})</small>
+                </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
+                <div class="alert alert-info">
+                    <i class="bi bi-info-circle"></i>
+                    Hanya menampilkan dokter yang berpraktik pada hari {{ $today }}
+                </div>
+
                 <div class="form-group">
                     <input type="text" id="searchDokter" class="form-control" placeholder="Cari berdasarkan nama atau spesialisasi...">
                 </div>
@@ -211,6 +166,7 @@
                                 <th>Nama</th>
                                 <th>Spesialisasi</th>
                                 <th>Hari Praktek</th>
+                                <th>Jam Praktek</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -221,6 +177,7 @@
                                 <td>{{ $dokter['nama'] ?? 'N/A' }}</td>
                                 <td>{{ $dokter['spesialisasi'] ?? 'N/A' }}</td>
                                 <td>{{ $dokter['hariPraktek'] ?? 'N/A' }}</td>
+                                <td>{{ ($dokter['jamMulai'] ?? '') . ' - ' . ($dokter['jamSelesai'] ?? '') }}</td>
                                 <td>
                                     <button type="button" class="btn btn-primary btn-sm pilih-dokter"
                                         data-id-dokter="{{ $dokter['id_Dokter'] }}"
@@ -233,6 +190,12 @@
                             @endforeach
                         </tbody>
                     </table>
+
+                    @if(count($dokters) == 0)
+                    <div class="alert alert-warning text-center">
+                        Tidak ada dokter yang berpraktik pada hari {{ $today }}
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -244,12 +207,27 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="klinikModalLabel">Pilih Klinik</h5>
+                <h5 class="modal-title" id="klinikModalLabel">
+                    Pilih Klinik
+                    <small class="text-muted">(Klinik yang tersedia untuk dokter hari {{ $today }})</small>
+                </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
+                <div class="alert alert-info">
+                    <i class="bi bi-info-circle"></i>
+                    Menampilkan klinik yang tersedia untuk dokter yang berpraktik pada hari {{ $today }}
+                </div>
+
+                @if(count($kliniks) == 0)
+                <div class="alert alert-warning">
+                    <i class="bi bi-exclamation-triangle"></i>
+                    Tidak ada klinik yang tersedia untuk dokter hari ini. Silakan pilih dari semua klinik.
+                </div>
+                @endif
+
                 <div class="form-group">
                     <input type="text" id="searchKlinik" class="form-control" placeholder="Cari berdasarkan nama atau jenis klinik...">
                 </div>
@@ -283,6 +261,13 @@
                             @endforeach
                         </tbody>
                     </table>
+
+                    @if(count($kliniks) == 0)
+                    <div class="alert alert-warning text-center">
+                        Tidak ada klinik yang tersedia untuk hari {{ $today }}.
+                        Silakan hubungi administrator untuk menambahkan jadwal klinik.
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -308,18 +293,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Inisialisasi pencarian
-    setupSearch('searchPasien', 'tabelPasien', [0, 1, 2, 3]);
     setupSearch('searchDokter', 'tabelDokter', [0, 1, 2, 3]);
     setupSearch('searchKlinik', 'tabelKlinik', [0, 1, 2, 3]);
 
     // Event listeners untuk pemilihan data
-    $(document).on('click', '.pilih-pasien', function() {
-        $('#noRekamMedis').val($(this).data('id'));
-        $('#namaPasien').val($(this).data('nama'));
-        $('#tanggalLahir').val($(this).data('tanggallahir'));
-        $('#pasienModal').modal('hide');
-    });
-
     $(document).on('click', '.pilih-dokter', function() {
         $('#idDokter').val($(this).data('id-dokter'));
         $('#namaDokter').val($(this).data('nama-dokter'));
@@ -335,7 +312,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Inisialisasi DataTables
-    $('#tabelPasien, #tabelDokter, #tabelKlinik').DataTable({
+    $('#tabelDokter, #tabelKlinik').DataTable({
         "language": {
             "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/Indonesian.json"
         },

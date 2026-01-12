@@ -105,7 +105,7 @@
             </div>
         </div>
 
-                        <div class="form-group">
+            <div class="form-group">
                 <label class="d-block mb-2">Data Klinik *</label>
                 <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#klinikModal">
                     <i class="bi bi-search"></i> Cari Klinik
@@ -243,12 +243,27 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="klinikModalLabel">Pilih Klinik</h5>
+                <h5 class="modal-title" id="klinikModalLabel">
+                    Pilih Klinik
+                    <small class="text-muted">(Klinik yang tersedia untuk dokter hari {{ $today }})</small>
+                </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
+                <div class="alert alert-info">
+                    <i class="bi bi-info-circle"></i>
+                    Menampilkan klinik yang tersedia untuk dokter yang berpraktik pada hari {{ $today }}
+                </div>
+
+                @if(count($kliniks) == 0)
+                <div class="alert alert-warning">
+                    <i class="bi bi-exclamation-triangle"></i>
+                    Tidak ada klinik yang tersedia untuk dokter hari ini. Silakan pilih dari semua klinik.
+                </div>
+                @endif
+
                 <div class="form-group">
                     <input type="text" id="searchKlinik" class="form-control" placeholder="Cari berdasarkan nama atau jenis klinik...">
                 </div>
@@ -282,6 +297,13 @@
                             @endforeach
                         </tbody>
                     </table>
+
+                    @if(count($kliniks) == 0)
+                    <div class="alert alert-warning text-center">
+                        Tidak ada klinik yang tersedia untuk hari {{ $today }}.
+                        Silakan hubungi administrator untuk menambahkan jadwal klinik.
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>

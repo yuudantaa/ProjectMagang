@@ -794,6 +794,73 @@ app.MapGet("/Klinik/{id}",(IKlinik klinikData, string id, IMapper mapper)=>
     return Results.Ok(klinikDtos);
 }).WithTags("Klinik");
 
+// Endpoint untuk mendapatkan klinik berdasarkan dokter yang tersedia
+app.MapGet("/klinik/by-dokter-hari-ini", async (IKlinik klinikData, IDokter dokterData, IKunjungan kunjunganData, IMapper mapper) =>
+{
+    try
+    {
+        var today = DateOnly.FromDateTime(DateTime.Now);
+        var dayOfWeek = today.DayOfWeek;
+        
+        // Konversi ke nama hari Indonesia
+        string[] hariIndo = { "Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu" };
+        var hariIni = hariIndo[(int)dayOfWeek];
+
+        // Ambil semua dokter
+        var allDokters = dokterData.GetDokters();
+        
+        // Filter dokter yang praktek hari ini
+        var dokterHariIni = allDokters.Where(d => 
+            d.HariPraktek.Contains(hariIni, StringComparison.OrdinalIgnoreCase)
+        ).ToList();
+
+        // Ambil semua kunjungan
+        var allKunjungan = await kunjunganData.GetAllKunjungan();
+        
+        // Ambil ID klinik yang terkait dengan dokter hari ini
+        var klinikIds = new HashSet<string>();
+        
+        foreach (var dokter in dokterHariIni)
+        {
+            var kunjunganDokter = allKunjungan
+                .Where(k => k.Id_Dokter == dokter.Id_Dokter)
+                .ToList();
+                
+            foreach (var kunjungan in kunjunganDokter)
+            {
+                klinikIds.Add(kunjungan.Id_Klinik);
+            }
+        }
+
+        // Ambil semua klinik
+        var allKliniks = klinikData.GetKlinik();
+        
+        // Filter klinik berdasarkan ID yang ditemukan
+        var filteredKliniks = allKliniks
+            .Where(k => klinikIds.Contains(k.Id_Klinik))
+            .ToList();
+
+        // Jika tidak ada klinik yang ditemukan, kembalikan semua klinik
+        if (!filteredKliniks.Any())
+        {
+            filteredKliniks = allKliniks.ToList();
+        }
+
+        var klinikDTOs = mapper.Map<List<KlinikDTO>>(filteredKliniks);
+        return Results.Ok(new
+        {
+            success = true,
+            message = $"Menampilkan klinik untuk dokter yang praktek hari {hariIni}",
+            data = klinikDTOs,
+            hari_ini = hariIni
+        });
+    }
+    catch (Exception ex)
+    {
+        return Results.Problem($"An error occurred: {ex.Message}");
+    }
+}).WithTags("Klinik");
+
 app.MapPost("/Klinik", async (IKlinik klinikData, KlinikAddDTO klinikAddDTO, 
     IMapper mapper, InterfaceIdKlinik idGenerator) =>
 {

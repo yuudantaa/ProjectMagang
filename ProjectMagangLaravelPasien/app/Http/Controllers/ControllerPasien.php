@@ -178,6 +178,7 @@ class ControllerPasien extends Controller
         }
     }
 
+
     public function tampilkunjunganpasienlama($id)
     {
         $client = new Client();
@@ -273,28 +274,73 @@ class ControllerPasien extends Controller
                 return in_array($todayName, $hariPraktek);
             });
 
-            // Data lainnya
-            $response = $client->get('http://localhost:5022/klinik');
-            $kliniks = json_decode($response->getBody(), true);
+            // Ambil semua kunjungan untuk mendapatkan relasi dokter-klinik
+            $responseKunjungan = $client->get('http://localhost:5022/kunjungan/all', [
+                'headers' => ['Accept' => 'application/json'],
+                'timeout' => 30
+            ]);
+            $allKunjungan = json_decode($responseKunjungan->getBody(), true);
 
+            // Ambil semua klinik
+            $responseKlinik = $client->get('http://localhost:5022/klinik');
+            $allKliniks = json_decode($responseKlinik->getBody(), true);
+
+            // Filter klinik berdasarkan dokter yang tersedia hari ini
+            $klinikIdsHariIni = [];
+            foreach ($allKunjungan as $kunjungan) {
+                // Cek apakah kunjungan ini memiliki dokter yang praktek hari ini
+                foreach ($dokters as $dokter) {
+                    if ($kunjungan['dokter']['id_Dokter'] == $dokter['id_Dokter']) {
+                        $klinikIdsHariIni[] = $kunjungan['klinik']['id_Klinik'];
+                        break;
+                    }
+                }
+            }
+
+            // Hapus duplikat klinik ID
+            $klinikIdsHariIni = array_unique($klinikIdsHariIni);
+
+            // Filter klinik berdasarkan ID yang ditemukan
+            $kliniks = array_filter($allKliniks, function($klinik) use ($klinikIdsHariIni) {
+                return in_array($klinik['id_Klinik'], $klinikIdsHariIni);
+            });
+
+            // Jika tidak ada klinik yang ditemukan, tampilkan semua klinik
+            if (empty($kliniks)) {
+                $kliniks = $allKliniks;
+            }
+
+            // Data lainnya
             $response = $client->get('http://localhost:5022/pasien');
             $pasiens = json_decode($response->getBody(), true);
+
+            $newPatient = session('new_patient_data');
+            $patientAdded = session('patient_added_success');
 
             return view("tambahkunjungan", [
                 "key" => "kunjungan",
                 "dokters" => $dokters,
-                "kliniks" => $kliniks,
+                "kliniks" => array_values($kliniks),
                 "pasiens" => $pasiens,
-                "today" => $todayName
+                "today" => $todayName,
+                "showSuccessModal" => session('show_success_modal', false),
+                "successMessage" => session('success_message', ''),
+                "newPatient" => $newPatient,
+                "patientAdded" => $patientAdded
             ]);
+
         } catch (\Exception $e) {
             session()->flash('alert', 'Gagal mengambil data: ' . $e->getMessage());
-            return view("tambah-kunjungan", [
+            return view("tambahkunjungan", [
                 "key" => "kunjungan",
                 "dokters" => [],
                 "kliniks" => [],
                 "pasiens" => [],
-                "today" => "Hari ini"
+                "today" => "Hari ini",
+                "newPatient" => null,
+                "patientAdded" => false,
+                "showSuccessModal" => false,
+                "successMessage" => ''
             ]);
         }
     }
